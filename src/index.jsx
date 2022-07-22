@@ -2,6 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import MarvelService from './services/MarvelService';
 import { Button } from './components/button';
+import { Banner } from './components/banner';
+import "./resources/main.scss";
+
 const ms = new MarvelService();
 // ms.getCharacters()
 //   .then(characters => characters.forEach(character => console.log(character.id)));
@@ -10,6 +13,7 @@ ms.getCharacter(1017100)
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+  <Banner/>
   <Button title="Test Button" onClick={() => console.log(1)} long={true} secondary={true}/>
   </React.StrictMode>
 );
