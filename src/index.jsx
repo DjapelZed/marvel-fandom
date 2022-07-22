@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import MarvelService from './services/MarvelService';
 import { Button } from './components/button';
 import { Banner } from './components/banner';
+import Header from './containers/header';
 import "./resources/main.scss";
 
 const ms = new MarvelService();
@@ -13,7 +14,10 @@ ms.getCharacter(1017100)
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-  <Banner/>
-  <Button title="Test Button" onClick={() => console.log(1)} long={true} secondary={true}/>
+    <div className='wrapper'>
+      <Header/>
+      <Banner/>
+      <Button title="Test Button" onClick={() => console.log(1)} long={true} secondary={true}/>
+    </div>
   </React.StrictMode>
 );
