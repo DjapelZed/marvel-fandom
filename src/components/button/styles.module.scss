@@ -1,0 +1,59 @@
+@import "../../resources/variables";
+.button {
+    border: none;
+    padding: 11px 0;
+    width: 101px;
+    position: relative;
+    overflow: hidden;
+    font-size: 0.875rem;
+    color: #fff;
+    font-weight: 400;
+    text-transform: uppercase;
+    background-color: transparent;
+    z-index: 2;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out 0s;
+    
+    &:hover {
+        transform: translate(0, -3px);
+    }
+
+    &:active {
+        transform: translate(0, 0);
+    }
+
+    &::after {
+        content: "";
+        width: 105px;
+        height: 83px;
+        position: absolute;
+        left: -2px;
+        bottom: -22px;
+        transform: rotate(-45deg);
+        z-index: -1;
+        background-color: $accent-color;
+    }      
+}
+.primary {
+    &::after {
+        background-color: $accent-color;
+    }
+}
+.secondary {
+    &::after {
+        background-color: $secondary-color;
+    }
+}
+.long {
+    width: 170px;
+    &::after {
+        content: "";
+        width: 250px;
+        height: 131px;
+        position: absolute;
+        left: -33px;
+        bottom: -39px;
+        transform: rotate(-45deg);
+        z-index: -1;
+    }
+}
