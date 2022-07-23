@@ -4,6 +4,7 @@ import MarvelService from './services/MarvelService';
 import { Button } from './components/button';
 import { Banner } from './components/banner';
 import Header from './containers/header';
+import HomePage from './pages/home-page';
 import "./resources/main.scss";
 
 const ms = new MarvelService();
@@ -11,6 +12,7 @@ const ms = new MarvelService();
 //   .then(characters => characters.forEach(character => console.log(character.id)));
 ms.getCharacter(1017100)
   .then(character => console.log(character));
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -18,6 +20,7 @@ root.render(
       <Header/>
       <Banner/>
       <Button title="Test Button" onClick={() => console.log(1)} long={true} secondary={true}/>
+      <HomePage/>
     </div>
   </React.StrictMode>
 );

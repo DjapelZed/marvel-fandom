@@ -8,19 +8,29 @@ class MarvelService{
         return await response.json();
     };
 
-    getCharacters = () => {
+    getCharacters = async () => {
         const url = `${this._url}characters?apikey=${this._key}`
-        const response = this.get(url);
-        const characters = response.then(r => r.data.results);
+        const response = await this.get(url);
+        const characters = response.data.results.map(c => this._transformCharacter(c));
         return characters;
     };
 
-    getCharacter = id => {
+    getCharacter = async id => {
         const url = `${this._url}characters/${id}?apikey=${this._key}`;
-        const response = this.get(url);
-        const character = response.then(r => r.data.results[0]);
+        const response = await this.get(url);
+        const character = this._transformCharacter(response.data.results[0]);
         return character;
     };
+
+    _transformCharacter = res => {
+        return {
+            name: res.name,
+            thumbnail: res.thumbnail.path + "." + res.thumbnail.extension,
+            description: res.description,
+            homepage: res.urls[0].url,
+            wiki: res.urls[1].url
+        }
+    }
 }
 
 export default MarvelService;
