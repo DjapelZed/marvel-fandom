@@ -44,13 +44,15 @@ const RandomCharacter = () => {
     useEffect(() => {
         updateCharacter();
     }, []);
+    const errorMessage = error ? <Error/> : null;
     const spinner = loading ? <Spinner/> : null;
-    const content = error ? <Error/> : <View name={name} 
-                                            description={description} 
-                                            thumbnail={thumbnail} 
-                                            homepage={homepage} 
-                                            wiki={wiki}/>;
+    const content = !(loading || error) ? <View name={name} 
+                                                description={description} 
+                                                thumbnail={thumbnail} 
+                                                homepage={homepage} 
+                                                wiki={wiki}/> : null;
     return <section className="main__random random">
+                {errorMessage}
                 {spinner}
                 {content}
                 <div className="random__section description">
