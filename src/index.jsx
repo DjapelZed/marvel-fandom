@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import MarvelService from './services/MarvelService';
-import { Button } from './components/button';
-import { Banner } from './components/banner';
 import Header from './containers/header';
 import HomePage from './pages/home-page';
 import "./resources/main.scss";

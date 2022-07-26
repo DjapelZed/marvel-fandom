@@ -1,0 +1,40 @@
+@import "../../resources/variables";
+
+.main__content{
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.characters {
+    max-width: 650px;
+    
+    &__container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 25px;
+        row-gap: 30px;
+    }
+
+    &__character {
+        width: 200px;
+        height: 318px;
+        background-color: $bg-color-contrast;
+        color: #fff;
+        cursor: pointer;
+        transition: filter 0.2s ease-in-out 0s;
+        &:hover {
+            filter: drop-shadow(0px 5px 20px $accent-color);
+        }
+        img {
+            max-width: 100%;
+        }
+        .title {
+            margin: 15px;
+        }
+    }
+
+    .load-more {
+        width: fit-content;
+        margin: 45px auto;
+    }
+}
