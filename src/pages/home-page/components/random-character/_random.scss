@@ -16,8 +16,12 @@
         display: flex;
         
         &__img {
-            min-width: 180px;
             margin-right: 30px;
+            img {
+                width: 218px;
+                height: 218px;
+                object-fit: cover;
+            }
         }
         &__info {
             display: flex;

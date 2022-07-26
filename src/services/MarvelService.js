@@ -23,13 +23,14 @@ class MarvelService{
     };
 
     _transformCharacter = res => {
+        const descr = res.description ? res.description : "There is no description for this character";
         return {
             name: res.name,
             thumbnail: res.thumbnail.path + "." + res.thumbnail.extension,
-            description: res.description,
+            description: descr,
             homepage: res.urls[0].url,
             wiki: res.urls[1].url
-        }
+        };
     }
 }
 

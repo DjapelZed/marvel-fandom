@@ -65,7 +65,7 @@ const RandomCharacter = () => {
                         </div>
                         <div className="random__choose-another">
                             <div class="random__text">Or choose another one</div>
-                            <Button title="Try It"/>
+                            <Button onClick={updateCharacter} title="Try It"/>
                         </div>
                     </div>
                     <div className="random__decoration">
