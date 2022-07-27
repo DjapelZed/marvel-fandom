@@ -28,6 +28,7 @@ const RandomCharacter = () => {
     }
 
     const updateCharacter = () => {
+        setLoading(true);
         const id = Math.floor(Math.random() * (1011400 - 1011000) + 1011000);
         mv.getCharacter(id)
             .then(({name, description, thumbnail, homepage, wiki}) => {

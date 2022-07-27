@@ -25,6 +25,7 @@ class MarvelService{
     _transformCharacter = res => {
         const descr = res.description ? res.description : "There is no description for this character";
         return {
+            id: res.id,
             name: res.name,
             thumbnail: res.thumbnail.path + "." + res.thumbnail.extension,
             description: descr,
