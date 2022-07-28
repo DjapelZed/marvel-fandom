@@ -1,8 +1,26 @@
+import { useEffect, useState } from "react";
 import { Button } from "../../../../components/button";
+import MarvelService from "../../../../services/MarvelService";
 import "./_character-info.scss";
 
-const CharacterInfo = ({char}) => {
-    return <div class="content__character-info character-info">
+const CharacterInfo = ({charId}) => {
+    const [char, setChar] = useState();
+    const mv = new MarvelService();
+
+    useEffect(() => {
+        if (charId >= 10000) {
+            mv.getCharacter(charId).then(res => {
+                setChar(res);
+            })
+        }
+    }, [])
+    const component = charId ? <View char={char}/> : null;
+
+    return component;
+}
+
+const View = ({char}) => {
+    return !char ? null : <div class="content__character-info character-info">
                     <div class="character-info__top">
                         <div class="character-info__img">
                             <img src={char.thumbnail} alt={char.name}/>

@@ -30,10 +30,12 @@ function HomePage() {
     
 }
 
-const View = ({chars, loading}) => {    
+const View = ({chars, loading}) => {
+    const [charId, setCharId] = useState();
+
     return <div className="main__content">
-        <Characters chars={chars} loading={loading}/>
-        {/* <CharacterInfo char={chars[0]}/> */}
+        <Characters setCharId={setCharId} chars={chars} loading={loading}/>
+        <CharacterInfo charId={charId}/>
     </div>
 }
 

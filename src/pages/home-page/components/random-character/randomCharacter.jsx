@@ -45,6 +45,7 @@ const RandomCharacter = () => {
     useEffect(() => {
         updateCharacter();
     }, []);
+    
     const errorMessage = error ? <Error/> : null;
     const spinner = loading ? <Spinner/> : null;
     const content = !(loading || error) ? <View name={name} 

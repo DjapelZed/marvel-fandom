@@ -2,9 +2,9 @@ import { Button } from "../../../../components/button";
 import { Spinner } from "../../../../components/spinner";
 import Character from "../character/character";
 
-const Characters = ({chars, loading}) => {
+const Characters = ({chars, loading, setCharId}) => {
     const spinner = loading ? <Spinner/> : null;
-    const characters = !spinner ? chars.map(char => <Character key={char.id} char={char}/>) : null 
+    const characters = !spinner ? chars.map(char => <Character setCharId={setCharId} key={char.id} char={char}/>) : null 
     return <div className="content__characters characters">
         <div className="characters__container">
             {spinner}
