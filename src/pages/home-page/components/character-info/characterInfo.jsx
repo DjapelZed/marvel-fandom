@@ -30,7 +30,7 @@ const CharacterInfo = ({charId}) => {
     useEffect(() => {
         updateCharInfo();
     }, [charId]);
-
+    foo.bar = 0;
     const loader = char ||  error || loading ? null : <LoaderInfo/>
     const errorMsg = error ? <Error/> : null;
     const spinner = loading ? <Spinner/> : null;
@@ -46,9 +46,9 @@ const CharacterInfo = ({charId}) => {
 };
 
 const View = ({char}) => {
-    const comicsItems = char.comicsList.map(comics => {
+    const comicsItems = char.comicsList.map((comics, i) => {
         return (
-            <li class="comics__item">
+            <li key={i} class="comics__item">
                 <a href={comics.resourceURI}>{comics.name}</a>
             </li>
         )
@@ -73,6 +73,7 @@ const View = ({char}) => {
             <div class="character-info__comics comics">
                 <h4 class="comics__title">Comics:</h4>
                 <ul class="comics__list">
+                    {comicsItems.length > 0 ? null : "There is no comics with this character"}
                     {comicsItems}
                 </ul>
             </div>

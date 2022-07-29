@@ -4,6 +4,7 @@ import Characters from "./components/characters/characters";
 import CharacterInfo from "./components/character-info/characterInfo";
 import MarvelService from "../../services/MarvelService";
 import "./_characters.scss";
+import ErrorBoundary from "../../components/errorBoundary";
 
 function HomePage() {
     const [chars, setChars] = useState([]);
@@ -35,7 +36,9 @@ const View = ({chars, loading}) => {
 
     return <div className="main__content">
         <Characters setCharId={setCharId} chars={chars} loading={loading}/>
-        <CharacterInfo charId={charId}/>
+        <ErrorBoundary>
+            <CharacterInfo charId={charId}/>
+        </ErrorBoundary>
     </div>
 }
 
