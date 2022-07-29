@@ -23,7 +23,7 @@ const CharacterInfo = ({charId}) => {
 
 const View = ({char}) => {
     return <div class="content__character-info character-info">
-           {char ? <CharInfo/> : <LoaderInfo/>} 
+           {char ? <CharInfo char={char}/> : <LoaderInfo/>} 
         </div>
 };
 
