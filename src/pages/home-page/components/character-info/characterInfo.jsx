@@ -30,7 +30,7 @@ const CharacterInfo = ({charId}) => {
     useEffect(() => {
         updateCharInfo();
     }, [charId]);
-    foo.bar = 0;
+    
     const loader = char ||  error || loading ? null : <LoaderInfo/>
     const errorMsg = error ? <Error/> : null;
     const spinner = loading ? <Spinner/> : null;

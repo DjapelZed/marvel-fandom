@@ -18,6 +18,15 @@
         transform: translate(0, -3px);
     }
 
+    &:disabled,
+    &[disabled] {
+        color: rgb(156, 156, 156);
+        transform: none;
+        &::after {
+            background-color: $secondary-color;
+        }
+    }
+
     &:active {
         transform: translate(0, 0);
     }

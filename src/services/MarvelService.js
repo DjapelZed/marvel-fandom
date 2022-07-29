@@ -8,8 +8,8 @@ class MarvelService{
         return await response.json();
     };
 
-    getCharacters = async () => {
-        const url = `${this._url}characters?apikey=${this._key}`
+    getCharacters = async ({limit=9, offset=30}) => {
+        const url = `${this._url}characters?apikey=${this._key}&limit=${limit}&offset=${offset}`
         const response = await this.get(url);
         const characters = response.data.results.map(c => this._transformCharacter(c));
         return characters;

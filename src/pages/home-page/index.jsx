@@ -9,15 +9,20 @@ import ErrorBoundary from "../../components/errorBoundary";
 function HomePage() {
     const [chars, setChars] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [loadingItems, setLoadingItems] = useState(false);
+    const [offset, setOffset] = useState(0);
 
     const mv = new MarvelService();
     
     const updateChars = () => {
-        const characters = mv.getCharacters();
+        setLoadingItems(true)
+        const characters = mv.getCharacters({offset: offset});
         characters.then(characters => {
-        setChars(characters);
-        setLoading(false);
-    });    
+            setChars([...chars, ...characters]);
+            setOffset(offset + 9)
+            setLoading(false);
+            setLoadingItems(false);
+        });    
     };
 
     useEffect(() => {
@@ -26,16 +31,15 @@ function HomePage() {
 
     return <>
             <RandomCharacter/>
-            <View chars={chars.slice(0, 9)} loading={loading}/>
+            <View chars={chars} loading={loading} updateChars={updateChars} loadingItems={loadingItems}/>
         </>
-    
 }
 
-const View = ({chars, loading}) => {
+const View = ({chars, loading, updateChars, loadingItems}) => {
     const [charId, setCharId] = useState();
 
     return <div className="main__content">
-        <Characters setCharId={setCharId} chars={chars} loading={loading}/>
+        <Characters updateChars={updateChars} setCharId={setCharId} chars={chars} loading={loading} loadingItems={loadingItems}/>
         <ErrorBoundary>
             <CharacterInfo charId={charId}/>
         </ErrorBoundary>

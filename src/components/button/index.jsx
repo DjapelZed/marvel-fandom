@@ -1,6 +1,6 @@
 import styles from "./styles.module.scss";
 
-const Button = ({title, onClick=() => {}, href="", secondary=false, long=false}) => {
+const Button = ({title, onClick=() => {}, href="", secondary=false, long=false, disabled=false}) => {
     const classSecondary = secondary ? styles.secondary : "";
     const classLong = long ? styles.long : "";
     const classNames = `${styles.button} ${classSecondary} ${classLong}`;
@@ -10,7 +10,7 @@ const Button = ({title, onClick=() => {}, href="", secondary=false, long=false})
         }
         onClick()
     }
-    return <button onClick={onClickWrapper} className={classNames}>{title}</button>
+    return <button disabled={disabled} onClick={onClickWrapper} className={classNames}>{title}</button>
 }
 
 export {Button};
