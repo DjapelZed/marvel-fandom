@@ -9,7 +9,7 @@ const CharacterInfo = ({charId}) => {
     const mv = new MarvelService();
 
     const updateCharInfo = () => {
-        mv.getCharacter(charId).then(res => {
+        mv.getCharacter(charId, true).then(res => {
             setChar(res);
         })
     };
@@ -28,6 +28,7 @@ const View = ({char}) => {
 };
 
 const CharInfo = ({char}) => {
+    const comicsItems = char.comicsList.map(comics => <li class="comics__item"><a href={comics.resourceURI}>{comics.name}</a></li>)
     return <>
         <div class="character-info__top">
                         <div class="character-info__img">
@@ -47,8 +48,7 @@ const CharInfo = ({char}) => {
                     <div class="character-info__comics comics">
                         <h4 class="comics__title">Comics:</h4>
                         <ul class="comics__list">
-                            <li class="comics__item">All-Winners Squad: Band of Heroes (2011) #3</li>
-                            <li class="comics__item">AMAZING SPIDER-MAN VOL. 7: BOOK OF EZEKIEL TPB (Trade Paperback)</li>
+                            {comicsItems}
                         </ul>
                     </div>
     </>

@@ -15,14 +15,14 @@ class MarvelService{
         return characters;
     };
 
-    getCharacter = async id => {
+    getCharacter = async (id, comics=false) => {
         const url = `${this._url}characters/${id}?apikey=${this._key}`;
         const response = await this.get(url);
-        const character = this._transformCharacter(response.data.results[0]);
+        const character = this._transformCharacter(response.data.results[0], comics);
         return character;
     };
 
-    _transformCharacter = res => {
+    _transformCharacter = (res, comics=false) => {
         const descr = res.description ? res.description : "There is no description for this character";
         return {
             id: res.id,
@@ -30,7 +30,8 @@ class MarvelService{
             thumbnail: res.thumbnail.path + "." + res.thumbnail.extension,
             description: descr,
             homepage: res.urls[0].url,
-            wiki: res.urls[1].url
+            wiki: res.urls[1].url,
+            comicsList: comics ? res.comics.items : null
         };
     }
 }
