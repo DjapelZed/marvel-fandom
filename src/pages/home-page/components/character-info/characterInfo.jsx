@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button } from "../../../../components/button";
+import LoaderInfo from "../../../../components/loader";
 import MarvelService from "../../../../services/MarvelService";
 import "./_character-info.scss";
 
@@ -7,21 +8,28 @@ const CharacterInfo = ({charId}) => {
     const [char, setChar] = useState();
     const mv = new MarvelService();
 
-    useEffect(() => {
-        if (charId >= 10000) {
-            mv.getCharacter(charId).then(res => {
-                setChar(res);
-            })
-        }
-    }, [])
-    const component = charId ? <View char={char}/> : null;
+    const updateCharInfo = () => {
+        mv.getCharacter(charId).then(res => {
+            setChar(res);
+        })
+    };
 
-    return component;
-}
+    useEffect(() => {
+        updateCharInfo();
+    }, [charId]);
+
+    return <View char={char}/>;
+};
 
 const View = ({char}) => {
-    return !char ? null : <div class="content__character-info character-info">
-                    <div class="character-info__top">
+    return <div class="content__character-info character-info">
+           {char ? <CharInfo/> : <LoaderInfo/>} 
+        </div>
+};
+
+const CharInfo = ({char}) => {
+    return <>
+        <div class="character-info__top">
                         <div class="character-info__img">
                             <img src={char.thumbnail} alt={char.name}/>
                         </div>
@@ -43,7 +51,7 @@ const View = ({char}) => {
                             <li class="comics__item">AMAZING SPIDER-MAN VOL. 7: BOOK OF EZEKIEL TPB (Trade Paperback)</li>
                         </ul>
                     </div>
-                </div>
-}
+    </>
+};
 
 export default CharacterInfo;
