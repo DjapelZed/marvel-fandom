@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useEffect, useState } from "react";
 import { Button } from "../../../../components/button";
 import { Error } from "../../../../components/error";
@@ -36,7 +37,7 @@ const CharacterInfo = ({charId}) => {
     const spinner = loading ? <Spinner/> : null;
     const content = (loading || error || loader) ? null : <View char={char}/>;
     return (
-        <div class="content__character-info character-info">
+        <div className="content__character-info character-info">
             {loader}
             {content}
             {errorMsg}
@@ -55,24 +56,24 @@ const View = ({char}) => {
     });
     return (
         <>
-            <div class="character-info__top">
-                <div class="character-info__img">
+            <div className="character-info__top">
+                <div className="character-info__img">
                     <img src={char.thumbnail} alt={char.name}/>
                 </div>
-                <div class="character-info__block">
-                    <h3 class="character-info__title character__title">{char.name}</h3>
-                    <div class="character-info__buttons">
+                <div className="character-info__block">
+                    <h3 className="character-info__title character__title">{char.name}</h3>
+                    <div className="character-info__buttons">
                         <Button href={char.homepage} title="HOMEPAGE"/>
                         <Button href={char.wiki} title="WIKI" secondary={true}/>
                     </div>
                 </div>
             </div>
-            <p class="character-info__description">
+            <p className="character-info__description">
                 {char.description}  
             </p>
-            <div class="character-info__comics comics">
-                <h4 class="comics__title">Comics:</h4>
-                <ul class="comics__list">
+            <div className="character-info__comics comics">
+                <h4 className="comics__title">Comics:</h4>
+                <ul className="comics__list">
                     {comicsItems.length > 0 ? null : "There is no comics with this character"}
                     {comicsItems}
                 </ul>
@@ -80,5 +81,9 @@ const View = ({char}) => {
         </>
     )
 };
+
+CharacterInfo.propTypes = {
+    charId: PropTypes.number
+}
 
 export default CharacterInfo;
