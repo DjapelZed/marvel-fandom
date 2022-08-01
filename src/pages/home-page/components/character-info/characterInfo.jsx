@@ -49,7 +49,7 @@ const CharacterInfo = ({charId}) => {
 const View = ({char}) => {
     const comicsItems = char.comicsList.map((comics, i) => {
         return (
-            <li key={i} class="comics__item">
+            <li key={i} className="comics__item">
                 <a href={comics.resourceURI}>{comics.name}</a>
             </li>
         )
@@ -84,6 +84,6 @@ const View = ({char}) => {
 
 CharacterInfo.propTypes = {
     charId: PropTypes.number
-}
+};
 
 export default CharacterInfo;
